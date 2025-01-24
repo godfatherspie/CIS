@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            width: 300px;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            border-radius: 4px;
+        }
+
+        .login-container button:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .success {
+            color: green;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+        
+        <!-- Display error or success message -->
+        {% if error %}
+        <p class="error">Invalid username or password!</p>
+        {% endif %}
+        {% if success %}
+        <p class="success">Login successful!</p>
+        <script>
+            // Show a popup alert when login is successful
+            alert('Login successful!');
+        </script>
+        {% endif %}
+
+        <!-- Login Form -->
+        <form method="POST" onsubmit="return validateForm()">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to handle form validation and show popup
+        function validateForm() {
+            var username = document.getElementsByName("username")[0].value;
+            var password = document.getElementsByName("password")[0].value;
+            
+            if (username === "" || password === "") {
+                alert("Please fill in both fields!");
+                return false;
+            }
+
+            // Allow form submission if validation passes
+            return true;
+        }
+    </script>
+
+</body>
+</html>
